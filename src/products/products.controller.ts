@@ -6,23 +6,34 @@ import {
   Post,
   Query,
   Render,
-  Req,
 } from '@nestjs/common';
-import { Request } from 'express';
+import { ProductsService } from './products.service';
+
+export interface ProductParams {
+  name: string;
+  description: string;
+  image: string;
+  price: number;
+}
 
 @Controller('products')
 export class ProductsController {
-  @Get('new/:id')
-  @Render('index')
-  getProduct(@Param('id') id: string, @Query('q') q: string) {
-    console.log(id);
-    console.log(q);
-    return { message: 'hello', data: [] };
+  constructor(private productService: ProductsService) {}
+  @Get('')
+  async index() {
+    const products = await this.productService.getAll();
+    return { message: 'hello', data: products };
   }
 
-  @Post('/create')
-  postProduct(@Body() body) {
-    console.log(body);
-    return 'Tao moi du lieu thanh cong!';
+  @Get('/:id')
+  async detail(@Param('id') id: number) {
+    const product = await this.productService.getDetail(id);
+    return { message: 'Data', data: product };
+  }
+
+  @Post('/')
+  async create(@Body() body: ProductParams) {
+    const product = await this.productService.createProduct(body);
+    return { message: 'Data', data: product };
   }
 }
