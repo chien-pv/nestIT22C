@@ -7,6 +7,8 @@ import { UsersModule } from './users/users.module';
 import { Product } from './products/product.entity';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductsModule } from './products/products.module';
+import { Category } from './category/category.entity';
+import { CategoryModule } from './category/category.module';
 
 @Module({
   imports: [
@@ -17,11 +19,10 @@ import { ProductsModule } from './products/products.module';
       username: 'root',
       password: 'password',
       database: 'demost22c',
-      entities: [Product],
+      entities: [Product, Category],
       synchronize: true,
     }),
-    MongooseModule.forRoot('mongodb://localhost/demonestIT22C'),
-    UsersModule,
+    CategoryModule,
     ProductsModule,
   ],
   controllers: [AppController],
