@@ -11,7 +11,8 @@ export class CategoryService {
   ) {}
 
   getOneById(id: number) {
-    return this.categoriRepostory.find({
+    return this.categoriRepostory.findOne({
+      where: { id },
       relations: {
         products: true,
       },
