@@ -7,10 +7,8 @@ export class CategoryController {
   @Get('/')
   async index() {
     const category = await this.categoryService.getOneById(2);
-    const products = category?.products;
     return {
       message: 'get',
-      data: products,
     };
   }
 }

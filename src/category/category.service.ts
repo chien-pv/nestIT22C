@@ -10,12 +10,13 @@ export class CategoryService {
     private readonly categoriRepostory: Repository<Category>,
   ) {}
 
+  getAll() {
+    return this.categoriRepostory.find();
+  }
+
   getOneById(id: number) {
     return this.categoriRepostory.findOne({
       where: { id },
-      relations: {
-        products: true,
-      },
     });
   }
 }
