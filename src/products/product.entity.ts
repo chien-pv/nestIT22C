@@ -33,7 +33,7 @@ export class Product {
   @Column()
   status: boolean;
 
-  // @Field()
-  // @ManyToOne(() => Category, (category) => category.products)
-  // category: Category;
+  @Field(() => Category)
+  @ManyToOne(() => Category, (category) => category.products)
+  category: Category;
 }

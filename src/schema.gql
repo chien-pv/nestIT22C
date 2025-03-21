@@ -2,6 +2,13 @@
 # THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
 # ------------------------------------------------------
 
+type Category {
+  id: Int!
+  name: String!
+  description: String!
+  products: [Product!]!
+}
+
 type Product {
   id: Int!
   name: String!
@@ -10,12 +17,7 @@ type Product {
   price: Float!
   quantity: Float!
   status: Boolean!
-}
-
-type Category {
-  id: Int!
-  name: String!
-  description: String!
+  category: Category!
 }
 
 type Query {

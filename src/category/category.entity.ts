@@ -17,6 +17,7 @@ export class Category {
   @Column()
   description: string;
 
-  // @OneToMany(() => Product, (product) => product.category)
-  // products: Product[];
+  @Field(() => [Product])
+  @OneToMany(() => Product, (product) => product.category)
+  products: Product[];
 }

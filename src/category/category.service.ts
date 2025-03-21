@@ -11,7 +11,11 @@ export class CategoryService {
   ) {}
 
   getAll() {
-    return this.categoriRepostory.find();
+    return this.categoriRepostory.find({
+      relations: {
+        products: true,
+      },
+    });
   }
 
   getOneById(id: number) {

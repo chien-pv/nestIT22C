@@ -11,7 +11,11 @@ export class ProductsService {
   ) {}
 
   getAll(): Promise<Product[]> {
-    return this.productRepostory.find();
+    return this.productRepostory.find({
+      relations: {
+        category: true,
+      },
+    });
   }
 
   getDetail(id: number) {
