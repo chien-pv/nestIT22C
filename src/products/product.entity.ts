@@ -35,5 +35,5 @@ export class Product {
 
   @Field(() => Category)
   @ManyToOne(() => Category, (category) => category.products)
-  category: Category;
+  category?: Category | null;
 }

@@ -15,6 +15,7 @@ export interface ProductParams {
   description: string;
   image: string;
   price: number;
+  category?: number;
 }
 
 @Controller('products')
