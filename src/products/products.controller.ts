@@ -6,9 +6,12 @@ import {
   Post,
   Query,
   Render,
+  Req,
+  UseGuards,
 } from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CategoryService } from 'src/category/category.service';
+import { AuthGuard } from 'src/authen/auth.guard';
 
 export interface ProductParams {
   name: string;
@@ -24,8 +27,11 @@ export class ProductsController {
     private productService: ProductsService,
     private categoryService: CategoryService,
   ) {}
+
+  @UseGuards(AuthGuard)
   @Get('')
-  async index() {
+  async index(@Req() req: Request) {
+    console.log(req);
     const products = await this.productService.getAll();
     return { message: 'hello', data: products };
   }

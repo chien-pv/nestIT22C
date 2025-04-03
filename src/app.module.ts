@@ -12,6 +12,9 @@ import { CategoryModule } from './category/category.module';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloDriver, ApolloDriverConfig } from '@nestjs/apollo';
 import { join } from 'path';
+import { AuthenController } from './authen/authen.controller';
+import { AuthenService } from './authen/authen.service';
+import { AuthenModule } from './authen/authen.module';
 
 @Module({
   imports: [
@@ -31,6 +34,7 @@ import { join } from 'path';
     }),
     CategoryModule,
     ProductsModule,
+    AuthenModule,
   ],
   controllers: [AppController],
   providers: [AppService],
