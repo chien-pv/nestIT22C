@@ -10,5 +10,6 @@ import { ProductsResolver } from './products.resolver';
   imports: [TypeOrmModule.forFeature([Product]), CategoryModule],
   providers: [ProductsService, ProductsResolver],
   controllers: [ProductsController],
+  exports: [ProductsService],
 })
 export class ProductsModule {}

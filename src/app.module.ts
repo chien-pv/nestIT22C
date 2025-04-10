@@ -15,9 +15,34 @@ import { join } from 'path';
 import { AuthenController } from './authen/authen.controller';
 import { AuthenService } from './authen/authen.service';
 import { AuthenModule } from './authen/authen.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
+import { MailerService } from '@nestjs-modules/mailer';
+import { ProductsService } from './products/products.service';
 
 @Module({
   imports: [
+    MailerModule.forRoot({
+      transport: {
+        host: 'smtp.gmail.com',
+        port: 465,
+        secure: true,
+        auth: {
+          user: 'chjenbk11@gmail.com',
+          pass: 'gtsvnkxtylvviasr',
+        },
+      },
+      defaults: {
+        from: '"Your App" <your-email@gmail.com>',
+      },
+      template: {
+        dir: join(__dirname, 'templates'), // Thư mục chứa file .ejs
+        adapter: new EjsAdapter(), // Adapter cho EJS
+        options: {
+          strict: false,
+        },
+      },
+    }),
     TypeOrmModule.forRoot({
       type: 'mysql',
       host: 'localhost',
