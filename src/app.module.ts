@@ -19,9 +19,14 @@ import { MailerModule } from '@nestjs-modules/mailer';
 import { EjsAdapter } from '@nestjs-modules/mailer/dist/adapters/ejs.adapter';
 import { MailerService } from '@nestjs-modules/mailer';
 import { ProductsService } from './products/products.service';
+import { ScheduleModule } from '@nestjs/schedule';
+import { ScheduleService } from './schedule/schedule.service';
+import { ChatAppGateway } from './chat-app/chat-app.gateway';
+
 
 @Module({
   imports: [
+    ScheduleModule.forRoot(),
     MailerModule.forRoot({
       transport: {
         host: 'smtp.gmail.com',
@@ -62,6 +67,6 @@ import { ProductsService } from './products/products.service';
     AuthenModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [AppService, ScheduleService, ChatAppGateway],
 })
 export class AppModule {}

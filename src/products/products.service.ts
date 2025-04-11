@@ -3,7 +3,6 @@ import { Repository } from 'typeorm';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Product } from './product.entity';
 import { ProductParams } from './products.controller';
-import { Category } from 'src/category/category.entity';
 import { CategoryService } from 'src/category/category.service';
 
 @Injectable()
